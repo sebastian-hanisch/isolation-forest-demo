@@ -15,7 +15,7 @@ elliptic-envelope-demo (Wurzel: robuste Ellipse)
   ├─ ECOD                       (Kontrast: verteilungsfrei)                       [nicht gebaut]
   ├─ LOF → Feature Bagging      (lokale Dichte; Ensembles gegen viele Merkmale)   [nicht gebaut]
   ├─ One-Class SVM → Deep SVDD  (gelernte Grenze)                                 [nicht gebaut]
-  ├─ isolation-forest-demo → Extended Isolation Forest (Zufallsbäume)             [dieses Stück; EIF nicht gebaut]
+  ├─ isolation-forest-demo → extended-isolation-forest-demo (Zufallsbäume)        [dieses Stück → Nachfolger gebaut]
   └─ Autoencoder                (Rekonstruktionsfehler)                           [nicht gebaut]
 ```
 
@@ -76,7 +76,7 @@ Bäume (10–500), Unterstichprobe ψ (bis zur Tourenzahl), **Schwelle** (Standa
 - **Der Score ist keine kalibrierte Wahrscheinlichkeit:** die Schwelle 0.5 stimmt nur für große Stichproben (Score der Normalen 0.376 bei 300 Touren, 0.435 bei 20) und große ψ (ψ = 16: Fehlalarmrate 0.18); bei vielen Rauschmerkmalen ist sie zu hoch. Die **Rangfolge** bleibt in all diesen Fällen gut – der Isolation Forest ist ein Detektor ohne eingebaute Entscheidung.
 - **Der angenommene Anteil ist Vorwissen:** die Standardeinstellung des Anteils entspricht dem wahren; bei ½× oder 2× fällt F1 von 0.97 auf 0.67 – aber bei allen drei Detektoren gleich, denn dann entscheidet nur die Rangfolge.
 - **Masking:** eine dichte Gruppe abseits ist auch in der Unterstichprobe dicht (AUC 0.85 bei 20 %), die robuste Schätzung ist bis 25 % besser; bei 30 % kippt sie (0.49), der Isolation Forest bleibt über Raten (0.70). Ab 40 % versagen alle: die Gruppe *ist* der Normalbereich.
-- **Geister-Regionen und Drehungen:** achsenparallele Schnitte bewerten Punkte neben dem Datenbereich anders als solche in den Ecken; das ist die Schwäche, an der der Extended Isolation Forest ansetzt (noch nicht gebaut).
+- **Geister-Regionen und Drehungen:** achsenparallele Schnitte bewerten Punkte neben dem Datenbereich anders als solche in den Ecken; das ist die Schwäche, an der der [Extended Isolation Forest](../extended-isolation-forest-demo) ansetzt: er verkleinert die Bänder messbar (Anisotropie 0.081 → 0.029), ändert an der Erkennung im Szenario aber nichts (AUC beider 1.00) – sein Gewinn liegt an der Schwelle bei kleinen Stichproben.
 - **Synthetische Daten:** zwei Faktoren, lineare Mischung, weißes Gauß'sches Rauschen, feste Betriebsarten-Geometrie; die Anomalien liegen im Faktorraum weit draußen (Abstand 3–12 σ), was allen Verfahren entgegenkommt. Literatur nur mit Namen: Liu, Ting und Zhou (Isolation Forest); Hariri, Kind und Brunner (Extended Isolation Forest).
 
 ## Verifikation
