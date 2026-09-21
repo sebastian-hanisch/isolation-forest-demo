@@ -498,7 +498,7 @@ if st.session_state.get("dimension_on"):
     st.plotly_chart(build_sweep(nt, SWEEP_LABELS["n_noise"]), width="stretch", key="noise_chart")
     st.markdown("**Tourenzahl × Merkmalszahl**")
     st.plotly_chart(build_dimension(dt), width="stretch", key="dimension_chart")
-    st.caption("Mittel über 5 feste Datensätze. Die AUC des Isolation Forest bleibt bei jeder Tourenzahl und Merkmalszahl bei 0.99-1.00, auch wenn nicht mehr Touren als Merkmale da sind (die robuste Schätzung fällt dort auf 0.36-0.55). "
+    st.caption("Mittel über 5 feste Datensätze. Die AUC des Isolation Forest bleibt bei jeder Tourenzahl und Merkmalszahl bei 0.99-1.00, auch wenn nicht mehr Touren als Merkmale da sind (die robuste Schätzung liegt dort im Zufallsbereich, um 0.35-0.6, je nach Rechner). "
                "Rauschmerkmale kosten kaum Rangfolge, aber die Entscheidung an der festen Schwelle 0.5 (F1 rechts oben): der Anomalie-Wert der Sonderfahrten rückt an 0.5 heran.")
 
 st.markdown("---")

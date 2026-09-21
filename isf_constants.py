@@ -107,7 +107,7 @@ PRESET_HELP = {
                     "(Score 0.5) erreicht der Isolation Forest F1 0.96 bei 0.9 % Fehlalarmen, die robuste Schätzung F1 0.84 (Fehlalarmrate 3.9 %), die klassische F1 0.57 (Recall 0.43).",
     "Viele Rauschmerkmale (40)": "Im Mittel über fünf Aufnahmen: 40 unabhängige Rauschmerkmale zu den 12 Kennzahlen. Die Rangfolge des Isolation Forest bleibt gut (AUC 0.99; robust 0.88, klassisch 0.79), aber die Anomalie-Werte rücken "
                                  "an 0.5 heran: mit der Schwelle 0.5 findet er nur 39 % der Anomalien (F1 0.56); mit bekanntem Anteil wären es F1 0.84 - die Rangfolge trägt, die feste Schwelle nicht.",
-    "Wenige Touren, viele Merkmale": "Im Mittel über fünf Aufnahmen: 20 Touren, 30 Merkmale (n < p): klassisch und robust können nichts entscheiden (AUC 0.60 und 0.55, nichts markiert), der Isolation Forest hat AUC 1.00 - "
+    "Wenige Touren, viele Merkmale": "Im Mittel über fünf Aufnahmen: 20 Touren, 30 Merkmale (n < p): klassisch und robust können nichts entscheiden (AUC im Zufallsbereich um 0.5-0.6, nichts markiert), der Isolation Forest hat AUC 1.00 - "
                                       "aber mit der Schwelle 0.5 markiert er 14 % der Normalen (F1 0.61), weil sein Score bei kleinen Stichproben höher liegt.",
     "Dichte Gruppe abseits (20 %)": "Im Mittel über fünf Aufnahmen: 20 % der Touren bilden eine dichte Gruppe abseits. Der Isolation Forest isoliert sie schlechter, weil sie selbst in der Unterstichprobe dicht ist "
                                     "(AUC 0.85, F1 0.44); die robuste Schätzung stützt sich auf die dichtere Hälfte und findet sie (AUC 1.00, F1 0.94). Klassisch 0.62.",
