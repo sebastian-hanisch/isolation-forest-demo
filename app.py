@@ -473,7 +473,7 @@ if st.session_state.get("ghost_on"):
     c2.markdown("**Anisotropie**: Score der Ecken minus der Korridore")
     c2.plotly_chart(build_anisotropy(g_rows), width="stretch", key="ghost_aniso")
     st.caption(f"Für diese Aufnahme: Anisotropie {g_aniso:.3f} bei 1 σ Abstand. Rasterpunkte im gleichen Abstand zum nächsten Datenpunkt bekommen verschiedene Scores, je nachdem ob sie **neben dem Datenbereich** eines Merkmals liegen (Korridor: die Schnitte auf dem anderen Merkmal "
-               "reichen dort nicht zur Isolation) oder außerhalb beider Bereiche (Ecke): die Ecken sind um 0.06 bis 0.10 auffälliger. Die Ellipse der Wurzel ist dagegen isotrop im Abstand. Diese Bänder sind die 'Geister' - die Schwäche, "
+               "reichen dort nicht zur Isolation) oder außerhalb beider Bereiche (Ecke): die Ecken sind im Mittel über die Sweep-Datensätze um 0.06 bis 0.08 auffälliger (bei 1-2 σ Abstand; nahe am Datenrand, bei 0.5 σ, etwa 0.10-0.11). Die Ellipse der Wurzel ist dagegen isotrop im Abstand. Diese Bänder sind die 'Geister' - die Schwäche, "
                "an der der Extended Isolation Forest (schräge Schnitte) ansetzt. Nur die zwei ersten Merkmale, Betriebsarten wie in der Seitenleiste.")
 
 st.markdown("---")
@@ -542,7 +542,7 @@ st.markdown(
 | Annahme | Was passiert, wenn sie verletzt ist | Wer setzt an |
 |---|---|---|
 | **Anomalien sind wenige und verstreut** | Eine dichte Gruppe von 20 % senkt die AUC auf 0.85 (robuste Schätzung der Wurzel 1.00), bei 40 % auf 0.40. Anomalien in der Lücke zwischen zwei Betriebsarten: AUC 0.54, F1 0.02. | kleineres ψ (hilft, löst es nicht); lokale Dichte (**LOF**) |
-| **Achsenparallele Schnitte genügen** | Rasterpunkte im gleichen Abstand zum Datenrand bekommen je nach Lage verschiedene Scores: Punkte in den Ecken sind um 0.06 bis 0.10 auffälliger als solche neben dem Datenbereich - Bänder ("Geister") entlang der Achsen. | **Extended Isolation Forest** (schräge Schnitte) |
+| **Achsenparallele Schnitte genügen** | Rasterpunkte im gleichen Abstand zum Datenrand bekommen je nach Lage verschiedene Scores: Punkte in den Ecken sind im Mittel um 0.06 bis 0.08 auffälliger (bei 1-2 σ Abstand; bei 0.5 σ etwa 0.10-0.11) als solche neben dem Datenbereich - Bänder ("Geister") entlang der Achsen. | **Extended Isolation Forest** (schräge Schnitte) |
 | **Der Score ist eine Schwelle** | Die Rangfolge ist fast perfekt, die feste Schwelle 0.5 nicht: bei 40 Rauschmerkmalen Recall 0.39 (F1 0.56, mit bekanntem Anteil 0.84), bei 20 Touren Fehlalarmrate 0.156, bei ψ = 16 Fehlalarmrate 0.18. Ein falsch angenommener Anteil (½× oder 2×) senkt F1 von 0.97 auf 0.67. | Kalibrierung; parameterfreie Verfahren (**ECOD**) |
 | **Irrelevante Merkmale stören nicht** | Die AUC bleibt bei 40 Rauschmerkmalen bei 0.99 (robuste Schätzung 0.88), aber jeder Schnitt auf ein Rauschmerkmal ist verschenkt: die Scores der Anomalien rücken an 0.5. | Ensembles über Merkmalsteilmengen (**Feature Bagging**) |
 | **Der Wald ist groß genug** | Die AUC ist schon bei 10 Bäumen 1.00; der F1 an der Schwelle streut über Wald-Seeds mit 0.037 (10 Bäume), 0.015 (50) und 0.009 (200). | mehr Bäume (Rechenzeit) |
