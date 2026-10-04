@@ -129,7 +129,7 @@ Keine Dichte, keine Abstände, kein Formmodell - dafür eigene Schwächen. Was d
 st.caption(
     "Anders als die Fall-Demos im Portfolio, die an einem Anwendungsfall mehrere Verfahren vergleichen, zeigt diese Demo - zweites Stück der Anomalie-Erkennung-Linie der \"Konzepte\"-Reihe - **ein** Verfahren an einem wachsenden Beispiel. "
     "Szenario und die Schätzer der Wurzel (klassisch, robust per MCD) sind wortgleich aus der elliptic-envelope-demo übernommen, damit der Vergleich derselbe Boden hat. Die Linie hat keinen Konvergenzpunkt: die nächsten Stücke "
-    "(Extended Isolation Forest, lokale Dichte, Kernel-Grenze, ...) beheben jeweils eine Schwäche eines dieser Wege auf einem anderen Weg. Die Zufallsbäume verwandt mit dem Bagging der Baum-Verfahren (dort noch nicht gebaut)."
+    "(Extended Isolation Forest, lokale Dichte, Kernel-Grenze, ...) beheben jeweils eine Schwäche eines dieser Wege auf einem anderen Weg. Die Zufallsbäume sind verwandt mit dem Bagging der Baum-Verfahren (bagging-demo und random-forest-demo, beide gebaut)."
 )
 
 with st.expander("So funktioniert der Isolation Forest", expanded=True):
@@ -184,7 +184,7 @@ with st.sidebar:
     curvature = st.slider(
         "Krümmung des Normalbereichs", *bounds("curvature_slider"), key="curvature_slider", step=0.25,
         help="Biegt die normale Fläche (nicht mehr konvex). Bei 0 / 0.25 / 0.5 / 0.75 / 1 bleibt der F1 des Isolation Forest bei 0.96 / 0.98 / 0.97 / 0.97 / 0.95; die robuste Schätzung mit χ²-Schwelle fällt auf 0.84 / 0.49 / 0.41 / 0.39 / 0.38 "
-             "(Fehlalarmrate 0.04 auf 0.36), die klassische steigt auf 0.90-0.91. Die Rangfolge (AUC 1.00) ist für alle drei gleich - der Unterschied liegt in der Schwelle.",
+             "(Fehlalarmrate 0.04 auf 0.36), die klassische steigt auf 0.90-0.91. Die Rangfolge ist für alle drei gleich gut (AUC 1.00; ohne Krümmung klassisch 0.95) - der Unterschied liegt in der Schwelle.",
     )
     noise = st.slider(
         "Rauschen", *bounds("noise_slider"), key="noise_slider", step=0.05,
@@ -550,7 +550,7 @@ st.markdown(
 """
 )
 st.caption(
-    "Die Nachbarn der Anomalie-Erkennung-Linie: die Wurzel Elliptic Envelope (gebaut), Extended Isolation Forest (die Fortsetzung dieses Astes, noch nicht gebaut), LOF und Feature Bagging, One-Class SVM und Deep SVDD, ECOD und ein Autoencoder. "
+    "Die Nachbarn der Anomalie-Erkennung-Linie: die Wurzel Elliptic Envelope (gebaut), Extended Isolation Forest (die Fortsetzung dieses Astes), LOF und Feature Bagging, One-Class SVM und Deep SVDD, ECOD und der Autoencoder (alle gebaut). "
     "Keiner ist überlegen: der Isolation Forest ist schnell, robust gegen die Annahmen der Wurzel und bleibt dennoch ein Schwellenproblem."
 )
 
@@ -566,7 +566,7 @@ Abbruch bei $|Q| = 1$, gleichen Punkten oder Tiefe $\lceil \log_2 \psi \rceil$.
 
 **Anomalie-Wert.** $s(x, \psi) = 2^{-E[h(x)] / c(\psi)}$, $E$ über die Bäume des Waldes. $E[h] \to 0$: $s \to 1$; $E[h] = c(\psi)$: $s = 0{,}5$; $E[h] \to \psi - 1$: $s \to 0$.
 
-**Schwelle.** Standard: $s > 0{,}5$ (Faustregel, nicht kalibriert). Alternativ die $\lceil \alpha n \rceil$ größten Werte bei angenommenem Anteil $\alpha$. **Vergleich:** klassisch und robust mit dem Mahalanobis-Abstand $d^2$ und $\chi^2_{p,\,q}$ (siehe elliptic-envelope-demo; MCD als FastMCD).
+**Schwelle.** Standard: $s > 0{,}5$ (Faustregel, nicht kalibriert). Alternativ die $\operatorname{round}(\alpha n)$ größten Werte (mindestens einen) bei angenommenem Anteil $\alpha$. **Vergleich:** klassisch und robust mit dem Mahalanobis-Abstand $d^2$ und $\chi^2_{p,\,q}$ (siehe elliptic-envelope-demo; MCD als FastMCD).
 
 **Kennzahlen.** AUC (Rangsumme, Bindungen halb), mittlere Präzision, Precision, Recall, F1, Fehlalarmrate. **Score-Anisotropie:** mittlerer Score der Rasterpunkte außerhalb der Wertebereiche beider Merkmale ("Ecken") minus der in mindestens einem Wertebereich ("Korridore"), bei gleichem standardisiertem Abstand zum nächsten Datenpunkt (±0,15).
 
@@ -583,6 +583,6 @@ st.markdown("---")
 
 st.caption(
     "Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – "
-    "Operations Research und Machine Learning. Interesse an einer maßgeschneiderten Lösung für "
-    "Ihr Unternehmen? [Kontakt aufnehmen](https://sebastianhanisch.net/kontakt.html)"
+    "Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). "
+    "Mehr zur Reihe: [Anomalie-Erkennung: Ellipse bis Autoencoder](https://sebastianhanisch.net/konzepte-anomalie-erkennung.html)."
 )

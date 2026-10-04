@@ -9,12 +9,12 @@ neu sind **Rauschmerkmale** (0–40 unabhängige Spalten).
 
 **Einordnung in die Reihe (die Kanten des Graphen):** die Wurzel beschreibt das Normale (eine Gauß'sche Wolke) und markiert, was außerhalb liegt. Der Isolation Forest beschreibt **nichts** Normales, sondern fragt, **wie schnell sich eine Tour vom Rest abtrennen lässt**:
 zufällige achsenparallele Schnitte auf zufälligen Unterstichproben, Anomalien haben kurze Pfade. Er ist ein **unabhängiger Ast direkt nach der Wurzel** und behebt deren Annahmen (ein Normalbereich, Gauß, viele Touren je Merkmal) auf einem völlig anderen Weg – mit eigenen Schwächen,
-die die Fortsetzung **Extended Isolation Forest** (schräge Schnitte) aufgreift. Die Linie hat **keinen Konvergenzpunkt**; die Zufallsbäume sind verwandt mit dem Bagging der Baum-Verfahren (dort noch nicht gebaut).
+die die Fortsetzung **Extended Isolation Forest** (schräge Schnitte) aufgreift. Die Linie hat **keinen Konvergenzpunkt**; die Zufallsbäume sind verwandt mit dem Bagging der Baum-Verfahren (bagging-demo und random-forest-demo, beide gebaut).
 ```
 elliptic-envelope-demo (Wurzel: robuste Ellipse)
-  ├─ ECOD                       (Kontrast: verteilungsfrei)                       [nicht gebaut]
-  ├─ LOF → Feature Bagging      (lokale Dichte; Ensembles gegen viele Merkmale)   [nicht gebaut]
-  ├─ One-Class SVM → Deep SVDD  (gelernte Grenze)                                 [nicht gebaut]
+  ├─ ECOD                       (Kontrast: verteilungsfrei)                       [gebaut]
+  ├─ LOF → Feature Bagging      (lokale Dichte; Ensembles gegen viele Merkmale)   [beide gebaut]
+  ├─ One-Class SVM → Deep SVDD  (gelernte Grenze)                                 [beide gebaut]
   ├─ isolation-forest-demo → extended-isolation-forest-demo (Zufallsbäume)        [dieses Stück → Nachfolger gebaut]
   └─ autoencoder-anomalie-demo  (Rekonstruktionsfehler)                           [gebaut]
 ```
@@ -119,6 +119,4 @@ pytest tests/ -v
 
 ---
 
-Teil des [Operations-Research-Demo-Portfolios](https://sebastianhanisch.net/demos.html) von
-[Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning.
-Interesse an einer maßgeschneiderten Lösung? [Kontakt aufnehmen](https://sebastianhanisch.net/kontakt.html).
+Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zur Reihe: [Anomalie-Erkennung: Ellipse bis Autoencoder](https://sebastianhanisch.net/konzepte-anomalie-erkennung.html).

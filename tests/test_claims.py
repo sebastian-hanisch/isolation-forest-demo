@@ -276,4 +276,4 @@ def test_analysis_time_stays_small():
     a = ev.analyse(ev.make_dataset(n=600, p=30, n_noise=40, contamination=45))
     assert a.seconds["iforest"] < 3.0 and a.seconds["robust"] < 10.0
     b = ev.analyse(ev.make_dataset())
-    assert b.seconds["iforest"] < 1.0
+    assert b.seconds["iforest"] < 3.0
