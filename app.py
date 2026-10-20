@@ -126,6 +126,17 @@ Eine Sonderfahrt liegt abseits und ist nach wenigen Schnitten allein (**kurzer P
 Keine Dichte, keine Abstände, kein Formmodell - dafür eigene Schwächen. Was das gegenüber der Wurzel bringt und wo es endet, misst diese Demo - mit Siegen und Niederlagen.
 """
 )
+
+# erklaerseite:einfach:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/isolation-forest-erklaert.json, nicht von Hand ändern)
+with st.expander("💬 In einfachen Worten"):
+    st.markdown(
+        """
+Stellen Sie sich Lieferrouten als Punkte in einer Wolke vor. Die meisten Touren ähneln sich, einige Sonderfahrten liegen abseits. Der **Isolation Forest** beschreibt nicht, was normal ist. Er fragt, wie schnell sich eine Tour vom Rest abtrennen lässt. Dazu wird die Wolke immer wieder an einer zufälligen Stelle durchgeschnitten, bis eine Tour allein steht. Eine Sonderfahrt liegt abseits und ist nach wenigen Schnitten allein, eine normale Tour mitten im Rest braucht viele. Der Mittelwert über viele solcher Zufallsbäume ergibt den Anomalie-Wert. Die Demo zeigt, wo das gut gelingt und wo nicht: Die Rangfolge ist oft stark, die Entscheidungsschwelle dagegen ein eigenes Problem. Die Daten sind künstlich erzeugt.
+
+[Ausführlich und verständlich erklärt, mit Fachteil](https://sebastianhanisch.net/isolation-forest-erklaert.html)
+        """
+    )
+# erklaerseite:einfach:end
 st.caption(
     "Anders als die Fall-Demos im Portfolio, die an einem Anwendungsfall mehrere Verfahren vergleichen, zeigt diese Demo - zweites Stück der Anomalie-Erkennung-Linie der \"Konzepte\"-Reihe - **ein** Verfahren an einem wachsenden Beispiel. "
     "Szenario und die Schätzer der Wurzel (klassisch, robust per MCD) sind wortgleich aus der elliptic-envelope-demo übernommen, damit der Vergleich derselbe Boden hat. Die Linie hat keinen Konvergenzpunkt: die nächsten Stücke "
@@ -557,6 +568,29 @@ st.caption(
 st.markdown("---")
 
 with st.expander("📐 Mathematische Formulierung"):
+    # erklaerseite:lesehilfe:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/isolation-forest-erklaert.json, nicht von Hand ändern)
+    st.markdown(
+        r"""
+**Lesehilfe.** Gegeben sind Touren mit ihren Kennzahlen und je Baum eine zufällige Unterstichprobe der Größe $\psi$. Gesucht ist der Anomalie-Wert $s(x, \psi)$ jeder Tour: Je kürzer ihr mittlerer Pfad bis zur Einzelstellung, desto näher liegt er an 1.
+
+| Symbol | Bedeutung |
+|---|---|
+| $x$ | eine Tour (Zeile der Kennzahlen) |
+| $\psi$ | Größe der Unterstichprobe, die ein Baum sieht |
+| $Q$ | Menge der Touren in einem Knoten des Baums |
+| $q$ | zufällig gewähltes Merkmal des Schnitts |
+| $t$ | Schnittpunkt, gleichverteilt zwischen kleinstem und größtem Wert in $Q$ |
+| $h(x)$ | Pfadlänge der Tour $x$ in einem Baum |
+| $e$ | Zahl der Schnitte bis zum Blatt |
+| $c(n)$ | mittlere Pfadlänge einer erfolglosen Suche in einem binären Suchbaum über $n$ Punkte |
+| $\gamma$ | Euler-Konstante |
+| $E[h(x)]$ | mittlere Pfadlänge über die Bäume des Waldes |
+| $s(x, \psi)$ | Anomalie-Wert: nahe 1 sehr leicht zu isolieren, 0,5 normal |
+
+[Schritt für Schritt erklärt, mit Herleitung und Literatur](https://sebastianhanisch.net/isolation-forest-erklaert.html#fachleute)
+        """
+    )
+    # erklaerseite:lesehilfe:end
     st.markdown(
         r"""
 **Isolationsbaum.** Auf einer Unterstichprobe $S$ mit $|S| = \psi$: Knoten mit Punktmenge $Q$: wähle $q$ zufällig unter den nicht konstanten Merkmalen und $t \sim U(\min_{x \in Q} x_q, \max_{x \in Q} x_q)$; $Q_L = \{x: x_q < t\}$, $Q_R = Q \setminus Q_L$.
