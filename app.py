@@ -404,7 +404,7 @@ _t = vd
 _caveat = ""
 if _t["iforest_f1"] < a.oracle_f1 - 0.15 and code == "if_wins":
     _caveat = (f" Bedenken: die Schwelle passt nicht - mit ihr hat der Isolation Forest F1 {_t['iforest_f1']:.2f} (Recall {_pct(_t['iforest_recall'])}, Fehlalarmrate {_t['iforest_false_alarm']:.1%}), "
-               f"mit bekanntem Anteil wären es {a.oracle_f1:.2f}: die Rangfolge trägt, die feste Schwelle nicht.")
+               f"mit bekanntem Anteil wären es {a.oracle_f1:.2f}: die Rangfolge taugt, die feste Schwelle nicht.")
 if code == "if_wins":
     st.success(f"✅ Der Isolation Forest trennt besser: AUC {_t['iforest_auc']:.2f} gegen {_t['classical_auc']:.2f} (klassisch) und {_t['robust_auc']:.2f} (robust). Er braucht weder eine Verteilungsannahme noch mehr Touren als Merkmale.{_caveat}")
 elif code == "comparable":
